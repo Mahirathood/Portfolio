@@ -1,0 +1,24 @@
+{
+  "name": "mahendar-portfolio",
+  "version": "1.0.0",
+  "description": "Mahendar Bhukya's Portfolio Website",
+  "main": "index.html",
+  "scripts": {
+    "start": "cd server && npm start",
+    "dev": "cd server && npm run dev"
+  },
+  "keywords": [
+    "portfolio",
+    "website",
+    "developer"
+  ],
+  "author": "Mahendar Bhukya",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^17.2.3"
+  }
+}
+
+
+
+

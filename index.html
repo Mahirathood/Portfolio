@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mahendar Bhukya · Portfolio</title>
+    <meta name="description" content="Portfolio of Mahendar Bhukya — Aspiring Software Developer with interests in AI, Data, and Scalable Web Solutions." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="icon" href="assets/images/favicon.png" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" role="banner">
+      <div class="container header-inner">
+        <a href="#" class="logo" aria-label="Mahendar Bhukya Home">
+          <span class="logo-mark">MB</span><span class="logo-text">
+        </a>
+        <nav class="site-nav" aria-label="Primary">
+          <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">☰</button>
+          <ul id="nav-menu" class="nav-menu">
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <button id="themeToggle" class="btn btn-ghost" aria-label="Toggle light/dark theme">🌙</button>
+          <a class="btn btn-primary" href="assets/resume/Mahendar_Bhukya_Resume.pdf" download>Download Resume</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section id="hero" class="hero">
+        <div class="container hero-inner">
+          <div class="hero-left">
+            <h1>
+              Hi, I'm <span class="accent">Mahendar Bhukya</span>
+            </h1>
+            <p class="tagline">Aspiring Software Developer | Passionate about AI, Data, and Scalable Web Solutions.</p>
+            <div class="hero-cta">
+              <a href="#projects" class="btn btn-primary">View Projects</a>
+              <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+            </div>
+          <p id="viewCounter" class="tagline" aria-live="polite"></p>
+            <div class="social-links">
+              <a href="https://www.linkedin.com/in/mahendar-bhukya-0747b4249" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <i class="fa-brands fa-linkedin-in"></i>
+              </a>
+              <a href="https://www.instagram.com/mr.mahii_rathod_7/" target="_blank" rel="noopener" aria-label="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+              <a href="https://twitter.com/mahenda33654857" target="_blank" rel="noopener" aria-label="X">
+                <i class="fa-brands fa-x-twitter"></i>
+              </a>
+              <a href="https://github.com/Mahirathood" target="_blank" rel="noopener" aria-label="GitHub">
+                <i class="fa-brands fa-github"></i>
+              </a>
+            </div>
+          </div>
+          <div class="hero-right">
+            <div class="hero-photo">
+              <img src="assets/images/mahi.jpg" alt="Mahendar Bhukya portrait" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <div class="container">
+          <h2 class="section-title">About Me</h2>
+          <p>
+            I am a motivated tech enthusiast with strong fundamentals in programming, mathematics, and computing. I enjoy building full-stack applications and exploring AI-driven solutions and data analytics. I am currently pursuing an Integrated M.Sc. in Mathematics and Computing at Birla Institute of Technology, Mesra (2021–2026), and I am open to software development, AI, or data-related roles.
+          </p>
+        </div>
+      </section>
+
+      <section id="education" class="section alt">
+        <div class="container">
+          <h2 class="section-title">Education</h2>
+          <div class="edu-card">
+            <div class="edu-header">
+              <h3>Birla Institute of Technology, Mesra</h3>
+              <span class="edu-year">2021 – 2026</span>
+            </div>
+            <p>Integrated M.Sc. in Mathematics and Computing</p>
+            <!-- <p><strong>CGPA:</strong> 7.0/10</p> -->
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="container">
+          <h2 class="section-title">Projects</h2>
+          <p id="projectsStatus" class="card-text">Loading latest public repositories from GitHub…</p>
+          <div id="projectsGrid" class="grid projects-grid"></div>
+        </div>
+      </section>
+
+      <section id="skills" class="section alt">
+        <div class="container">
+          <h2 class="section-title">Technical Skills</h2>
+          <div class="skills">
+            <div class="skill-group">
+              <h3>Languages</h3>
+              <ul>
+                <li>Python</li>
+                <li>C</li>
+                <li>JavaScript</li>
+                <li>SQL</li>
+                <li>Machine Learning</li>
+                <li>NLP</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3>Web & Tools</h3>
+              <ul>
+                <li>HTML, CSS</li>
+                <li>Node.js, Express.js</li>
+                <li>MySQL, MongoDB</li>
+                <li>Git, GitHub, Postman, Power BI</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3>Libraries</h3>
+              <ul>
+                <li>Pandas, NumPy</li>
+                <li>Matplotlib, Seaborn</li>
+                <li>React.js</li>
+                <li>Flask, HuggingFace Transformers</li>
+                <li>RapidFuzz</li>
+                <li>Scikit-learn, NLTK</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="section">
+        <div class="container">
+          <h2 class="section-title">My Services</h2>
+          <div class="grid projects-grid">
+            <article class="card">
+              <div class="card-body">
+                <h3 class="card-title">Software Development</h3>
+                <p class="card-text">End-to-end web apps, APIs, and tooling. Clean, maintainable code with a focus on performance and UX.</p>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-body">
+                <h3 class="card-title">AI & Automation</h3>
+                <p class="card-text">Rule-based or LLM-backed assistants, data-driven features, and automation to streamline workflows.</p>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-body">
+                <h3 class="card-title">Data Solutions</h3>
+                <p class="card-text">Data pipelines, dashboards, and analytics. Turning raw data into clear insights and decisions.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="achievements" class="section">
+        <div class="container">
+          <h2 class="section-title">Achievements & Activities</h2>
+          <ul class="achievements">
+            <li>Solved 200+ coding problems (CodeChef, HackerRank, LeetCode)</li>
+            <li>State-Level Chess Participant, Telangana (2016)</li>
+            <li>Volunteer, NSS BIT Mesra</li>
+            <li>Member, Google Developer Student Club (2023–2024)</li>
+            <li>Event Manager, Sankranthi Utsavam 2024 (BIT Telugu Samiti)</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="contact" class="section alt">
+        <div class="container">
+          <h2 class="section-title">Contact</h2>
+          <div class="contact-grid">
+            <div>
+              <p>Email: <a href="mailto:mahendarbit21@gmail.com">mahendarbit21@gmail.com</a></p>
+              <p>Phone: <a href="tel:+919160914683">+91 9160914683</a></p>
+              <div class="social-links">
+                <a href="https://www.linkedin.com/in/mahendar-bhukya-0747b4249" target="_blank" rel="noopener" aria-label="LinkedIn">
+                  <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="https://www.instagram.com/mr.mahii_rathod_7/" target="_blank" rel="noopener" aria-label="Instagram">
+                  <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://twitter.com/mahenda33654857" target="_blank" rel="noopener" aria-label="X">
+                  <i class="fa-brands fa-x-twitter"></i>
+                </a>
+                <a href="https://github.com/Mahirathood" target="_blank" rel="noopener" aria-label="GitHub">
+                  <i class="fa-brands fa-github"></i>
+                </a>
+              </div>
+            </div>
+            <form id="contactForm" class="contact-form" novalidate>
+              <input type="text" id="website" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+              <div class="form-row">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Your name" required />
+              </div>
+              <div class="form-row">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" required />
+              </div>
+              <div class="form-row">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="4" placeholder="How can I help?" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Send Message</button>
+              <p id="formStatus" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" role="contentinfo">
+      <div class="container footer-inner">
+        <p>© <span id="year"></span> Mahendar Bhukya</p>
+      </div>
+    </footer>
+
+    <button id="scrollTop" class="scroll-top" aria-label="Scroll to top">↑</button>
+
+    <div id="chatWidget" class="chat-widget" aria-live="polite" aria-label="Chatbot" aria-hidden="true">
+      <div class="chat-header">
+        <span>Chat with Mahendar's Assistant</span>
+        <button id="chatClose" class="chat-icon-btn" type="button" aria-label="Close chat"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div id="chatMessages" class="chat-messages"></div>
+      <form id="chatForm" class="chat-input" autocomplete="off">
+        <input id="chatText" type="text" name="q" placeholder="Type your message..." required />
+        <button class="btn btn-primary" type="submit">Send</button>
+      </form>
+    </div>
+    <button id="chatToggle" class="chat-toggle" type="button" aria-label="Open chat"><i class="fa-solid fa-message"></i></button>
+
+    <script>window.CHAT_WEBHOOK = 'http://localhost:3000/chat';</script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
