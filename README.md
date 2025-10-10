@@ -1,4 +1,4 @@
-# Mahendar Bhukya · Portfolio
+# Mahendar Bhukya · Portfolio - https://portfolio-mu-virid-94.vercel.app/
 
 A modern, professional, and responsive portfolio for Mahendar Bhukya with sections for About, Education, Projects, Skills, Achievements, and Contact. Includes light/dark mode, scroll-to-top, GitHub projects auto-load, Google Apps Script contact form, and an optional chatbot widget.
 
@@ -41,6 +41,7 @@ A modern, professional, and responsive portfolio for Mahendar Bhukya with sectio
 ## Deploy
 - Static site can go to GitHub Pages/Netlify/Vercel.
 - Backend can be deployed to Render/Fly/Heroku, then set `window.CHAT_WEBHOOK` to the deployed URL.
+- Link : https://portfolio-mu-virid-94.vercel.app/
 
 ## License
 MIT
