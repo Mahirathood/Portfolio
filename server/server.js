@@ -5,13 +5,26 @@ import nodemailer from 'nodemailer';
 import path from 'path';
 import { exec } from 'child_process';
 import fs from 'fs';
+import { fileURLToPath } from 'url';
 
 // Load .env
 dotenv.config();
 
+// Set up __dirname equivalent for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// Serve static files from the parent directory
+app.use(express.static(path.join(__dirname, '..')));
+
+// Handle all routes for SPA in production
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'index.html'));
+});
 
 // Email configuration
 let transporter = null;
@@ -52,33 +65,15 @@ app.post('/chat', async (req, res) => {
   }
 });
 
-// Views counter (JSON-file storage)
-const dataDir = path.resolve(process.cwd(), 'data');
-const viewsFile = path.join(dataDir, 'views.json');
-
-function ensureViewsFile(){
-  if(!fs.existsSync(dataDir)){
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
-  if(!fs.existsSync(viewsFile)){
-    fs.writeFileSync(viewsFile, JSON.stringify({ count: 0 }, null, 2));
-  }
-}
+// Views counter (in-memory for Vercel compatibility)
+let viewCount = 0;
 
 function readViews(){
-  ensureViewsFile();
-  try{
-    const raw = fs.readFileSync(viewsFile, 'utf8');
-    const json = JSON.parse(raw || '{}');
-    return Number(json.count || 0);
-  } catch(_err){
-    return 0;
-  }
+  return viewCount;
 }
 
 function writeViews(count){
-  ensureViewsFile();
-  fs.writeFileSync(viewsFile, JSON.stringify({ count }, null, 2));
+  viewCount = count;
 }
 
 app.get('/views', (req, res) => {
@@ -172,21 +167,5 @@ app.post('/contact', async (req, res) => {
 // Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Chat server running on http://localhost:${PORT}`);
-  
-  // Auto-open browser
-  const portfolioPath = path.resolve(process.cwd(), '..', 'index.html');
-  const browserCommand = process.platform === 'win32' 
-    ? `start "" "${portfolioPath}"`
-    : process.platform === 'darwin' 
-    ? `open "${portfolioPath}"`
-    : `xdg-open "${portfolioPath}"`;
-  
-  exec(browserCommand, (error) => {
-    if (error) {
-      console.log('Could not auto-open browser. Please manually open index.html');
-    } else {
-      console.log('Portfolio opened in browser!');
-    }
-  });
+  console.log(`Server running on port ${PORT}`);
 });
