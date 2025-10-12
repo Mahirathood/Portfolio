@@ -1,11 +1,12 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import fs from 'fs';
+import nodemailer from 'nodemailer';
 import path from 'path';
 import { exec } from 'child_process';
-import nodemailer from 'nodemailer';
+import fs from 'fs';
 
+// Load .env
 dotenv.config();
 
 const app = express();
@@ -13,16 +14,23 @@ app.use(cors());
 app.use(express.json());
 
 // Email configuration
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER || 'mahendarbit21@gmail.com',
-    pass: process.env.EMAIL_PASS || '' // You'll need to set this
-  }
-  
-});
+let transporter = null;
+if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+  transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true, // use SSL
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+  console.log("Email transporter configured successfully");
+} else {
+  console.log("Email credentials missing - email functionality disabled");
+}
 
-// Simple rule-based reply; you can later integrate an LLM/API
+// Simple rule-based reply
 function replyTo(text){
   const t = String(text || '').trim().toLowerCase();
   if(!t) return "Hello! Ask me anything about Mahendar's portfolio.";
@@ -44,7 +52,7 @@ app.post('/chat', async (req, res) => {
   }
 });
 
-// Views counter (very simple JSON-file storage)
+// Views counter (JSON-file storage)
 const dataDir = path.resolve(process.cwd(), 'data');
 const viewsFile = path.join(dataDir, 'views.json');
 
@@ -85,6 +93,28 @@ app.post('/views', (req, res) => {
   res.json({ count: next });
 });
 
+// Test email route
+app.get('/test-email', async (req, res) => {
+  if (!transporter) {
+    console.log('❌ Email functionality disabled - missing credentials');
+    return res.status(400).send('❌ Email functionality disabled. Please set EMAIL_USER and EMAIL_PASS in .env file.');
+  }
+  
+  try {
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER,
+      subject: '✅ Test Email from Portfolio Server',
+      text: 'This is a test email. Your server setup is working!',
+    });
+    console.log('✅ Test email sent successfully!');
+    res.send('✅ Email sent successfully!');
+  } catch (err) {
+    console.error('❌ Test email failed:', err);
+    res.status(500).send('❌ Email failed to send. Check console for details.');
+  }
+});
+
 // Contact form endpoint
 app.post('/contact', async (req, res) => {
   try {
@@ -107,27 +137,23 @@ app.post('/contact', async (req, res) => {
     });
     
     // Send email notification
-    try {
-      const mailOptions = {
-        from: process.env.EMAIL_USER || 'mahendarbit21@gmail.com',
-        to: 'mahendarbit21@gmail.com', // Your email
-        subject: `New Contact Form Message from ${name.trim()}`,
-        html: `
-          <h2>New Contact Form Submission</h2>
-          <p><strong>Name:</strong> ${name.trim()}</p>
-          <p><strong>Email:</strong> ${email.trim()}</p>
-          <p><strong>Message:</strong></p>
-          <p>${message.trim().replace(/\n/g, '<br>')}</p>
-          <hr>
-          <p><em>Sent from your portfolio website at ${new Date().toLocaleString()}</em></p>
-        `
-      };
-      
-      await transporter.sendMail(mailOptions);
-      console.log('Email sent successfully');
-    } catch (emailError) {
-      console.error('Email sending failed:', emailError);
-      // Don't fail the request if email fails, just log it
+    if (transporter) {
+      try {
+        const mailOptions = {
+          from: process.env.EMAIL_USER,
+          to: process.env.EMAIL_USER, // Your email
+          subject: `New Contact Form Message from ${name.trim()}`,
+          html: `<h2>New Contact Form Submission</h2><p><strong>Name:</strong> ${name.trim()}</p><p><strong>Email:</strong> ${email.trim()}</p><p><strong>Message:</strong></p><p>${message.trim().replace(/\n/g, '<br>')}</p><hr><p><em>Sent from your portfolio website at ${new Date().toLocaleString()}</em></p>`
+        };
+        
+        await transporter.sendMail(mailOptions);
+        console.log('Email sent successfully');
+      } catch (emailError) {
+        console.error('Email sending failed:', emailError);
+        // Don't fail the request if email fails, just log it
+      }
+    } else {
+      console.log('Contact form submission received, but email notification disabled (missing credentials)');
     }
     
     res.json({ 
@@ -143,6 +169,7 @@ app.post('/contact', async (req, res) => {
   }
 });
 
+// Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Chat server running on http://localhost:${PORT}`);

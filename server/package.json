@@ -11,11 +11,10 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.6.1",
-    "express": "^4.19.2",
+    "express": "^4.21.2",
     "nodemailer": "^7.0.9"
+  },
+  "devDependencies": {
+    "dotenv-cli": "^10.0.0"
   }
 }
-
-
-
-

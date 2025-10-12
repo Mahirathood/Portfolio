@@ -15,7 +15,7 @@
   "author": "Mahendar Bhukya",
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^17.2.3"
+    "dotenv": "^16.3.1"
   }
 }
 
